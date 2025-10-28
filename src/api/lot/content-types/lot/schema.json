@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "csr_campaigns",
+  "collectionName": "lots",
   "info": {
-    "singularName": "csr-campaign",
-    "pluralName": "csr-campaigns",
-    "displayName": "CsrCampaign"
+    "singularName": "lot",
+    "pluralName": "lots",
+    "displayName": "Lot"
   },
   "options": {
     "draftAndPublish": true
@@ -14,9 +14,15 @@
     "title": {
       "type": "string"
     },
-    "images": {
+    "subTitle": {
+      "type": "text"
+    },
+    "lotId": {
+      "type": "integer"
+    },
+    "banner": {
       "type": "media",
-      "multiple": true,
+      "multiple": false,
       "allowedTypes": [
         "images",
         "files",
@@ -24,11 +30,8 @@
         "audios"
       ]
     },
-    "totalDonated": {
-      "type": "string"
-    },
-    "content": {
-      "type": "richtext"
+    "location": {
+      "type": "text"
     }
   }
 }

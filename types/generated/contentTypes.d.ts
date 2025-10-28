@@ -403,7 +403,7 @@ export interface ApiAwardAward extends Struct.CollectionTypeSchema {
 export interface ApiCsrCampaignCsrCampaign extends Struct.CollectionTypeSchema {
   collectionName: 'csr_campaigns';
   info: {
-    displayName: 'csr_campaign';
+    displayName: 'CsrCampaign';
     pluralName: 'csr-campaigns';
     singularName: 'csr-campaign';
   };
@@ -428,6 +428,35 @@ export interface ApiCsrCampaignCsrCampaign extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     title: Schema.Attribute.String;
     totalDonated: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiLotLot extends Struct.CollectionTypeSchema {
+  collectionName: 'lots';
+  info: {
+    displayName: 'Lot';
+    pluralName: 'lots';
+    singularName: 'lot';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    banner: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::lot.lot'> &
+      Schema.Attribute.Private;
+    location: Schema.Attribute.Text;
+    lotId: Schema.Attribute.Integer;
+    publishedAt: Schema.Attribute.DateTime;
+    subTitle: Schema.Attribute.Text;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -945,6 +974,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::award.award': ApiAwardAward;
       'api::csr-campaign.csr-campaign': ApiCsrCampaignCsrCampaign;
+      'api::lot.lot': ApiLotLot;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
       'plugin::i18n.locale': PluginI18NLocale;
